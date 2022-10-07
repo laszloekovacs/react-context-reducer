@@ -1,4 +1,9 @@
-import React, {createContext, useContext, useReducer} from 'react';
+import React, {
+	createContext,
+	ReactElement,
+	useContext,
+	useReducer,
+} from 'react';
 
 export type stateType = {
 	counter: number;
@@ -23,21 +28,6 @@ export const useCounterContext = () => {
 	return useReducer(reducer, contextstate);
 };
 
-/*
- *	Context wrapper
- */
-export default function CounterContext(props: {
-	children?: React.ReactNode | null;
-}) {
-	return (
-		<>
-			<context.Provider value={initialState}>
-				{props.children}
-			</context.Provider>
-		</>
-	);
-}
-
 function reducer(state: stateType, action: actionType): stateType {
 	switch (action.type) {
 		case 'inc':
@@ -49,4 +39,19 @@ function reducer(state: stateType, action: actionType): stateType {
 		default:
 			return state;
 	}
+}
+
+/*
+ *	Context wrapper
+ */
+export default function CounterContext(props: {
+	children?: React.ReactNode;
+}): ReactElement {
+	return (
+		<>
+			<context.Provider value={initialState}>
+				{props?.children}
+			</context.Provider>
+		</>
+	);
 }

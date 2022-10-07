@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import {useCounterContext} from './CounterContext';
 
-function User(): React.ReactNode {
+function User(): ReactElement {
 	const [state, dispatch] = useCounterContext();
 
 	function increase(): void {

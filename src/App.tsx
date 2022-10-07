@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import CounterContext, {useCounterContext} from './CounterContext';
 import User from './User';
 
-const App: React.FC = () => {
+function App(): ReactElement {
 	const [state, dispatch] = useCounterContext();
 
 	return (
@@ -12,6 +12,6 @@ const App: React.FC = () => {
 			</CounterContext>
 		</>
 	);
-};
+}
 
 export default App;
