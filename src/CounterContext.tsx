@@ -1,7 +1,12 @@
-import React, {createContext, useContext} from 'react';
+import React, {createContext, useContext, useReducer} from 'react';
 
 export type stateType = {
 	counter: number;
+};
+
+export type actionType = {
+	type: string;
+	payload?: any;
 };
 
 const initialState: stateType = {
@@ -10,20 +15,38 @@ const initialState: stateType = {
 
 export const context = createContext(initialState);
 
-export const useCounterContext: () => [stateType, string] = () => {
-	const state = useContext(context);
-
-	return [state, 'dispatch'];
+/*
+ *	return state and dispatch
+ */
+export const useCounterContext = () => {
+	const contextstate = useContext(context);
+	return useReducer(reducer, contextstate);
 };
 
-export default function CounterContext({
-	children,
-}: {
-	children: React.ReactNode;
-}): React.ReactNode {
+/*
+ *	Context wrapper
+ */
+export default function CounterContext(props: {
+	children?: React.ReactNode | null;
+}) {
 	return (
 		<>
-			<context.Provider value={initialState}>{children}</context.Provider>
+			<context.Provider value={initialState}>
+				{props.children}
+			</context.Provider>
 		</>
 	);
+}
+
+function reducer(state: stateType, action: actionType): stateType {
+	switch (action.type) {
+		case 'inc':
+			return {counter: state.counter + 1};
+
+		case 'dec':
+			return {counter: state.counter - 1};
+
+		default:
+			return state;
+	}
 }

@@ -1,12 +1,17 @@
 import React from 'react';
 import CounterContext, {useCounterContext} from './CounterContext';
-
-import type stateType from './CounterContext';
+import User from './User';
 
 const App: React.FC = () => {
 	const [state, dispatch] = useCounterContext();
 
-	return <>{state.counter}</>;
+	return (
+		<>
+			<CounterContext>
+				<User></User>
+			</CounterContext>
+		</>
+	);
 };
 
 export default App;
