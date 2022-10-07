@@ -1,11 +1,15 @@
 import React from 'react';
 import {useCounterContext} from './CounterContext';
 
-function User() {
+function User(): React.ReactNode {
 	const [state, dispatch] = useCounterContext();
 
-	function handleIncrease() {
+	function increase(): void {
 		dispatch({type: 'inc'});
+	}
+
+	function decrease(): void {
+		dispatch({type: 'dec'});
 	}
 
 	return (
@@ -15,7 +19,13 @@ function User() {
 			<input
 				type="button"
 				value="increase"
-				onClick={() => handleIncrease()}
+				onClick={() => increase()}
+			></input>
+
+			<input
+				type="button"
+				value="decrease"
+				onClick={() => decrease()}
 			></input>
 		</>
 	);
