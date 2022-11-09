@@ -1,15 +1,17 @@
-import React, {ReactElement} from 'react';
-import {useCounterContext} from './CounterContext';
+import React from 'react';
+import { useCounterContext } from './CounterContext';
 
-function User(): ReactElement {
+
+
+function User(): JSX.Element {
 	const [state, dispatch] = useCounterContext();
 
 	function increase(): void {
-		dispatch({type: 'inc'});
+		dispatch({ type: 'inc' });
 	}
 
 	function decrease(): void {
-		dispatch({type: 'dec'});
+		dispatch({ type: 'dec' });
 	}
 
 	return (

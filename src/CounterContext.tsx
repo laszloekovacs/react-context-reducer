@@ -11,7 +11,7 @@ export type stateType = {
 
 export type actionType = {
 	type: string;
-	payload?: any;
+	payload?: unknown;
 };
 
 const initialState: stateType = {
@@ -31,10 +31,10 @@ export const useCounterContext = () => {
 function reducer(state: stateType, action: actionType): stateType {
 	switch (action.type) {
 		case 'inc':
-			return {counter: state.counter + 1};
+			return { counter: state.counter + 1 };
 
 		case 'dec':
-			return {counter: state.counter - 1};
+			return { counter: state.counter - 1 };
 
 		default:
 			return state;
